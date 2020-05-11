@@ -223,8 +223,9 @@ Page {
   /* margin: 20rpx; */
   display: flex;
   flex-direction: row;
-  position: relative;
-  bottom: -40rpx;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
   height: 100rpx;
   line-height: 100rpx;
   border-top: 2rpx solid rgba(7,17,27,0.1);
@@ -278,7 +279,7 @@ Page {
 
 .cus-dialog__bd {
   padding-top: 10rpx;
-  padding-bottom: 40rpx;
+  padding-bottom: 20rpx;
 }
 
 .list-view {
