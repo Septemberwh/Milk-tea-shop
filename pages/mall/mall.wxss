@@ -206,6 +206,8 @@ Page {
   display: flex;
   flex-direction: row;
   margin: 20rpx;
+  color: #aaaaaa;
+  font-size: 26rpx;
 }
 .section_title {
   display: block;
@@ -253,6 +255,7 @@ Page {
   z-index: 1001;
 }
 .cus-dialog__title {
+  margin-top: 10rpx;
   color: #00a5e0;
 }
 
@@ -267,7 +270,7 @@ Page {
 
 .dialog__del {
   position: absolute;
-  top: 0;
+  top: 10rpx;
   right: 0;
   font-size: 28rpx;
   color: #c5c5c5;

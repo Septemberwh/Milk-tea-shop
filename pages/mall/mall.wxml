@@ -42,8 +42,9 @@
 		<text class="shop-info {{totalPrice > 0 ? '' : 'shop-info-no'}}">{{totalPrice > 0 ?  '￥' + totalPrice : '购物车为空'}}</text>
 		<view class="shop-btn-g"><button class="shop-btn" bindtap="foodSubmit">结算</button></view>
 	</view>
-	<modal wx:if="{{modalShow}}" title="{{modalTitle}}" cancel-text='' confirm-text=''>
-		<form catchsubmit="formSubmit" catchreset="formReset">
+
+	<my-modal show="{{modalShow}}" height="440rpx" title="{{modalTitle}}" cancel-text='' confirm-text=''>
+	<form catchsubmit="formSubmit" catchreset="formReset">
 			<view class="section section_gap">
 				<view class="section_title">温度：
 					<radio-group name="temperature">
@@ -69,7 +70,7 @@
 				<button class="button1" type="" hover-class="none" formType="submit">提交</button>
 			</view>
 		</form>
-	</modal>
+	</my-modal>
 
 	<view class="fadeIn" wx:if="{{dialogShow}}">
 		<view class="weui-mask" bindtap="close"></view>

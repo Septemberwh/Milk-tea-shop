@@ -29,8 +29,23 @@ Component({
     //modal的高度
     height: {
       type: String,
-      value: '80%'
-    }
+      value: '50%'
+    },
+    //modal的title
+    title: {
+      type: String,
+      value: ''
+    },
+     //modal的 取消
+    cancelText: {
+      type: String,
+      value: ''
+    },
+    //modal的 确定
+    confirmText: {
+      type: String,
+      value: ''
+    },
   },
 
   /**

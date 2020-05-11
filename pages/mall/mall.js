@@ -131,7 +131,10 @@ Page({
   },
 
   foodSubmit(e) {
-    console.log(e);
+    let foodList = this.data.foodList;
+    if (foodList.length > 0) {
+      console.log('跳转结账');
+    }
   },
 
   close(e) {
