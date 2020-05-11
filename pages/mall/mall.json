@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "鱼鱼加油站",
+  "usingComponents": {
+    "my-modal": "/components/modal/modal"
+  }
+}

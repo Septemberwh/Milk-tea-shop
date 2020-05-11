@@ -1,0 +1,27 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view>
+    <button bindtap="bindMall" >mall</button>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+<!-- <mp-searchbar></mp-searchbar> -->
+<mp-halfScreenDialog 
+  bindbuttontap="buttontap"
+  show="{{show}}"
+  maskClosable="{{false}}" 
+  title="测试标题B" 
+  subTitle="测试标题B的副标题"
+  desc="辅助描述内容，可根据实际需要安排"
+  tips="辅助提示内容，可根据实际需要安排"
+
+></mp-halfScreenDialog>
+</view>

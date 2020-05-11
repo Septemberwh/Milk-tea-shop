@@ -1,0 +1,100 @@
+<!--pages/mall/mall.wxml-->
+<view class="container-mall">
+	<view class="content">
+		<view class="content-left">
+			<view class="type-list" style="height: {{foodViewHeight}}rpx">
+				<block wx:for="{{types}}" wx:for-item="type" wx:key="type" class="type-block">
+					<text class="type-item {{toView == index + 1 ? 'active' : ''}}" bindtap="tapType" data-id="{{index+1}}">{{type}}</text>
+				</block>
+			</view>
+		</view>
+		<view class="content-right">
+			<view class="food-list">
+				<scroll-view style="height: {{foodViewHeight}}rpx" scroll-y="true" scroll-with-animation="true" scroll-into-view="food_{{toView}}">
+					<view wx:for="{{foods}}" wx:for-item="foodList" wx:key="foodList" id="food_{{foodList.id}}">
+						<view class="foodList-item-name">{{foodList.name}}</view>
+						<view class="foodList-item" wx:for="{{foodList.list}}" wx:for-item="food" wx:key="food">
+							<view class="foodList-item-content">
+								<image class="food-image" mode='scaleToFill' src="{{food.src}}"></image>
+								<view class="food-detail">
+									<view class="food-item name">{{food.name}}</view>
+									<view class="food-item remark">{{food.remark}}</view>
+									<view class="food-item price">￥{{food.price}}</view>
+								</view>
+								<view class="oper-item">
+									<image wx:if="{{food.num}}" class="oper-image subduction" mode='scaleToFill' src="../../images/3.png" bindtap="subductionFood" data-data="{{food}}"></image>
+									<text class="oper-image num">{{food.num ? food.num : ''}}</text>
+									<image class="oper-image add" mode='scaleToFill' src="../../images/2.png" bindtap="addFood" data-data="{{food}}"></image>
+								</view>
+							</view>
+						</view>
+					</view>
+				</scroll-view>
+			</view>
+		</view>
+	</view>
+	<view class="fooder {{foodList.length > 0 ? '' : 'fooder-no'}}">
+		<view class="food-image">
+			<image class="cart" mode='scaleToFill' src="../../images/4.png" bindtap="shopCart">
+			</image>
+			<span wx:if="{{foodList.length > 0}}" class="weui-badge badge" style="">{{foodList.length}}</span>
+		</view>
+		<text class="shop-info {{totalPrice > 0 ? '' : 'shop-info-no'}}">{{totalPrice > 0 ?  '￥' + totalPrice : '购物车为空'}}</text>
+		<view class="shop-btn-g"><button class="shop-btn" bindtap="foodSubmit">结算</button></view>
+	</view>
+	<modal wx:if="{{modalShow}}" title="{{modalTitle}}" cancel-text='' confirm-text=''>
+		<form catchsubmit="formSubmit" catchreset="formReset">
+			<view class="section section_gap">
+				<view class="section_title">温度：
+					<radio-group name="temperature">
+						<label>
+							<radio value="1" checked="true" color="#00a5e0" />冷</label>
+						<label>
+							<radio value="2" color="#00a5e0" />热</label>
+					</radio-group>
+				</view>
+			</view>
+			<view class="section section_gap">
+				<view class="section_title">杯型：
+					<radio-group name="size">
+						<label>
+							<radio value="1" checked="true" color="#00a5e0" />大杯9元</label>
+						<label>
+							<radio value="2" color="#00a5e0" />中杯7元</label>
+					</radio-group>
+				</view>
+			</view>
+			<view class="btn-area">
+				<button class="button2" type="" hover-class="none" bindtap="formCancel">取消</button>
+				<button class="button1" type="" hover-class="none" formType="submit">提交</button>
+			</view>
+		</form>
+	</modal>
+
+	<view class="fadeIn" wx:if="{{dialogShow}}">
+		<view class="weui-mask" bindtap="close"></view>
+		<view class="weui-half-screen-dialog cus-dialog">
+			<view class="weui-half-screen-dialog__hd cus-dialog__hd">
+				<view class="weui-half-screen-dialog__hd__main cus-dialog__hd__main">
+					<strong class="weui-half-screen-dialog__title cus-dialog__title">购物车
+					</strong>
+					<view class="dialog__del" bindtap="cartDelAll">删除全部</view>
+				</view>
+			</view>
+			<view class="weui-half-screen-dialog__bd cus-dialog__bd">
+				<!-- <text>可放自定义内容\n 可放自定义内容\n 可放自定义内容</text> -->
+				<view wx:for="{{foodList}}" wx:for-item="afood" wx:key="afood">
+					<view class="list-view">
+						<view class="list-item list-item_name">
+							<text>{{afood.name}}
+								<text class="item_name_type">{{afood.temperature}}/{{afood.size}}</text>
+							</text>
+						</view>
+						<view class="list-item list-item_price">￥{{afood.price}}</view>
+						<view class="list-item list-item_oper" bindtap="cartDel" data-id="{{afood.id}}" data-index="{{index}}">删除</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
